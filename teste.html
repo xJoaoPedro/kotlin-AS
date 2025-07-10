@@ -1,0 +1,48 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exemplo Vue Avançado</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{ titulo }}</h2>
+
+    <input v-model="novoItem" placeholder="Digite um item" @keyup.enter="adicionarItem" />
+    <button @click="adicionarItem">Adicionar</button>
+
+    <ul>
+      <li v-for="(item, index) in lista" :key="index">
+        {{ item }} <button @click="removerItem(index)">Remover</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          titulo: 'Minha Lista de Compras',
+          novoItem: '',
+          lista: []
+        };
+      },
+      methods: {
+        adicionarItem() {
+          if (this.novoItem.trim() !== '') {
+            this.lista.push(this.novoItem.trim());
+            this.novoItem = '';
+          }
+        },
+        removerItem(index) {
+          this.lista.splice(index, 1);
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

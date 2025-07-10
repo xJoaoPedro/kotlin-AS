@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gameListFragment">
+
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="br.com.ulbra.ap2quinta.ui.fragments.GameListFragment"
+        android:label="Game" >
+        <action
+            android:id="@+id/navegarParaDetalhe"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="br.com.ulbra.ap2quinta.ui.fragments.DetailsFragment"
+        android:label="Detalhes"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/navegarParaLista"
+            app:destination="@id/gameListFragment" />
+        <argument
+            android:name="game"
+            app:argType="br.com.ulbra.ap2quinta.data.model.Game" />
+    </fragment>
+</navigation>
