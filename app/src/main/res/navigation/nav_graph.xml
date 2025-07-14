@@ -10,8 +10,11 @@
         android:name="br.com.ulbra.ap2quinta.ui.fragments.GameListFragment"
         android:label="Game" >
         <action
-            android:id="@+id/navegarParaDetalhe"
+            android:id="@+id/navegarParaDetalhes"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/navegarParaForm"
+            app:destination="@id/formGameFragment" />
     </fragment>
 
     <fragment
@@ -19,11 +22,19 @@
         android:name="br.com.ulbra.ap2quinta.ui.fragments.DetailsFragment"
         android:label="Detalhes"
         tools:layout="@layout/fragment_details" >
-        <action
-            android:id="@+id/navegarParaLista"
-            app:destination="@id/gameListFragment" />
         <argument
             android:name="game"
             app:argType="br.com.ulbra.ap2quinta.data.model.Game" />
+        <action
+            android:id="@+id/voltarParaLista"
+            app:destination="@id/gameListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formGameFragment"
+        android:name="br.com.ulbra.ap2quinta.ui.fragments.FormGameFragment"
+        android:label="Form Game" >
+        <action
+            android:id="@+id/voltarParaListaDeJogos"
+            app:destination="@id/gameListFragment" />
     </fragment>
 </navigation>

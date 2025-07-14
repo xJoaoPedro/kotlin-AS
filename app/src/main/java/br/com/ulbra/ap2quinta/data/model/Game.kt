@@ -7,6 +7,5 @@ data class Game (
     val name: String,
     val description: String,
     val publisher: String,
-    val launchYear: Int,
-    val imgPath: String
+    val launchYear: Int
 ): Serializable

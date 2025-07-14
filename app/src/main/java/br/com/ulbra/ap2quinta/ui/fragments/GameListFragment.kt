@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +15,10 @@ import br.com.ulbra.ap2quinta.data.model.Game
 import br.com.ulbra.ap2quinta.ui.adapter.GameAdapter
 import br.com.ulbra.ap2quinta.ui.adapter.GameViewHolder
 import br.com.ulbra.ap2quinta.ui.viewmodel.GameViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class GameListFragment : Fragment() {
-    private val repository = GameRepository()
     private lateinit var adapter: GameAdapter
     private val gameViewModel: GameViewModel by viewModels()
 
@@ -35,6 +36,13 @@ class GameListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val button = view.findViewById<FloatingActionButton>(R.id.fabAdd)
+
+        button.setOnClickListener {
+            val action = GameListFragmentDirections.navegarParaForm()
+            findNavController().navigate(action)
+        }
+
         val recycler = view.findViewById<RecyclerView>(R.id.recycler)
 
         adapter = GameAdapter(
@@ -49,7 +57,7 @@ class GameListFragment : Fragment() {
                 ).show()
             },
             onDetails = { game ->
-                val action  = GameListFragmentDirections.navegarParaDetalhe(game)
+                val action  = GameListFragmentDirections.navegarParaDetalhes(game)
                 findNavController().navigate(action)
             }
         )

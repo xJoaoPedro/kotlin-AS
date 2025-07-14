@@ -24,13 +24,11 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val game = args.game
-        val resId = resources.getIdentifier(game.imgPath, "drawable", requireContext().packageName)
 
         view.findViewById<TextView>(R.id.idGame).text = game.id.toString()
         view.findViewById<TextView>(R.id.gameName).text = game.name
         view.findViewById<TextView>(R.id.gameDescription).text = game.description
         view.findViewById<TextView>(R.id.gamePublisher).text = game.publisher
         view.findViewById<TextView>(R.id.gameLaunchYear).text = game.launchYear.toString()
-        view.findViewById<ImageView>(R.id.gameImg).setImageResource(resId)
     }
 }
