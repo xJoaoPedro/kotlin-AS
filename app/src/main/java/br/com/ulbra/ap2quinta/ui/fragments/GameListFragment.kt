@@ -5,15 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ulbra.ap2quinta.R
-import br.com.ulbra.ap2quinta.data.GameRepository
-import br.com.ulbra.ap2quinta.data.model.Game
 import br.com.ulbra.ap2quinta.ui.adapter.GameAdapter
-import br.com.ulbra.ap2quinta.ui.adapter.GameViewHolder
 import br.com.ulbra.ap2quinta.ui.viewmodel.GameViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -52,12 +48,16 @@ class GameListFragment : Fragment() {
                 Snackbar.make(
                     view.context,
                     recycler,
-                    "Deletado com sucesso!",
+                    "Zerado com sucesso!",
                     Snackbar.LENGTH_SHORT
                 ).show()
             },
             onDetails = { game ->
                 val action  = GameListFragmentDirections.navegarParaDetalhes(game)
+                findNavController().navigate(action)
+            },
+            onEdit = { game ->
+                val action = GameListFragmentDirections.navegarParaEdit(game)
                 findNavController().navigate(action)
             }
         )

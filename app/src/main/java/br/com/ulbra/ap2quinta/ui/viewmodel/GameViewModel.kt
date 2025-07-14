@@ -3,7 +3,6 @@ package br.com.ulbra.ap2quinta.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import br.com.ulbra.ap2quinta.data.GameRepository
 import br.com.ulbra.ap2quinta.data.local.database.AppDatabase
@@ -22,6 +21,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insertGame(game: Game) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(game.convertToEntity())
+    }
+
+    fun updateGame(game: Game) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(game.convertToEntity())
     }
 
     fun deleteGame(game: Game) = viewModelScope.launch(Dispatchers.IO) {

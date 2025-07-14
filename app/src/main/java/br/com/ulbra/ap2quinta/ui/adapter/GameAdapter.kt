@@ -8,7 +8,8 @@ import br.com.ulbra.ap2quinta.data.model.Game
 
 class GameAdapter(
     private val onDelete: (Game) -> Unit,
-    private val onDetails: (Game) -> Unit
+    private val onDetails: (Game) -> Unit,
+    private val onEdit: (Game) -> Unit
 ) : ListAdapter<Game, GameViewHolder>(GameDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val itemView =
@@ -16,7 +17,7 @@ class GameAdapter(
                 .from(parent.context)
                 .inflate(R.layout.game_item_list, parent, false)
 
-        return GameViewHolder(itemView = itemView, onDelete = onDelete, onDetails = onDetails)
+        return GameViewHolder(itemView = itemView, onDelete = onDelete, onDetails = onDetails, onEdit = onEdit)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {

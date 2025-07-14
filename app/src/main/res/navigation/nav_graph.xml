@@ -15,6 +15,9 @@
         <action
             android:id="@+id/navegarParaForm"
             app:destination="@id/formGameFragment" />
+        <action
+            android:id="@+id/navegarParaEdit"
+            app:destination="@id/editFormGameFragment" />
     </fragment>
 
     <fragment
@@ -36,5 +39,16 @@
         <action
             android:id="@+id/voltarParaListaDeJogos"
             app:destination="@id/gameListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFormGameFragment"
+        android:name="br.com.ulbra.ap2quinta.ui.fragments.EditFormGameFragment"
+        android:label="EditFormGameFragment" >
+        <action
+            android:id="@+id/voltarParaListaDoEdit"
+            app:destination="@id/gameListFragment" />
+        <argument
+            android:name="game"
+            app:argType="br.com.ulbra.ap2quinta.data.model.Game" />
     </fragment>
 </navigation>

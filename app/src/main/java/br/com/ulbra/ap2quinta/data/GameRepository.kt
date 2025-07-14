@@ -18,6 +18,10 @@ class GameRepository(private val gameDAO: GameDAO) {
         gameDAO.insertGame(gameEntity)
     }
 
+    suspend fun update(gameEntity: GameEntity) {
+        gameDAO.updateGame(gameEntity)
+    }
+
     suspend fun delete(gameEntity: GameEntity) {
         gameDAO.deleteGame(gameEntity)
     }
