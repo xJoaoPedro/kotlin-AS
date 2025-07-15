@@ -5,37 +5,32 @@ import android.widget.TextView
 import br.com.ulbra.ap2quinta.R
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ulbra.ap2quinta.data.model.Game
+import br.com.ulbra.ap2quinta.databinding.GameItemListBinding
 
 class GameViewHolder(
-    itemView: View,
+    private val binding: GameItemListBinding,
     private val onDelete: (Game) -> Unit,
     private val onDetails: (Game) -> Unit,
     private val onEdit: (Game) -> Unit
-) : RecyclerView.ViewHolder(itemView) {
-    private val name: TextView = itemView.findViewById(R.id.gameName)
-    private val description: TextView = itemView.findViewById(R.id.gameDescription)
-    private val publisher: TextView = itemView.findViewById(R.id.gamePublisher)
-    private val launchYear: TextView = itemView.findViewById(R.id.gameLaunchYear)
-    private val actionEdit: TextView = itemView.findViewById(R.id.editButton)
-    private val actionDelete: TextView = itemView.findViewById(R.id.actionDelete)
-    private val actionDetails: TextView = itemView.findViewById(R.id.actionDetails)
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(game: Game) {
-        name.text = game.name
-        description.text = game.description
-        publisher.text = game.publisher
-        launchYear.text = game.launchYear.toString()
+        binding.game = game
 
-        actionEdit.setOnClickListener {
+        binding.actionEdit.setOnClickListener {
             onEdit(game)
         }
 
-        actionDelete.setOnClickListener {
+        binding.actionDelete.setOnClickListener {
             onDelete(game)
         }
 
-        actionDetails.setOnClickListener {
+        binding.actionDetails.setOnClickListener {
             onDetails(game)
+        }
+
+        binding.gameCheck.addOnCheckedStateChangedListener {_, _ ->
+            binding.game = game
         }
     }
 }

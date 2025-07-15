@@ -1,131 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/gameCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="14dp"
-        android:backgroundTint="@color/cardview_light_background"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
+<layout>
+        <data>
+                <variable
+                        name="game"
+                        type="br.com.ulbra.ap2quinta.data.model.Game" />
+                
+                <variable
+                        name="paint"
+                        type="android.graphics.Paint" />
+                
+                <variable
+                        name="view"
+                        type="android.view.View" />
+        </data>
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/gameName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="gameName"
-                android:textAlignment="textStart"
-                android:textSize="22dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-            <TextView
-                android:id="@+id/gameDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Descrição do card onde fala sobre o jogo"
-                android:textAlignment="textStart"
-                android:textColor="#757575"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gameName" />
-
-            <TextView
-                android:id="@+id/gamePublisher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/gameLaunchYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Editar"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
-
-            <TextView
-                android:id="@+id/actionDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Visualizar"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/actionDelete"
-                app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
+                <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gameCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="14dp"
+                        android:backgroundTint="@color/cardview_light_background"
+                        android:elevation="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
 
-            <TextView
-                android:id="@+id/actionDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Zerar"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:background="#3EA63E"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/containerCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="20dp">
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrierDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="gameDescription" />
+                                <TextView
+                                        android:id="@+id/gameName"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:padding="8dp"
+                                        android:text="@{game.title}"
+                                        app:paintFlags = "@{game.check ? paint.STRIKE_THRU_TEXT_FLAG : 0}"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
 
 
+                                <TextView
+                                        android:id="@+id/gameDescription"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:padding="8dp"
+                                        android:text="@{game.title}"
+                                        app:paintFlags = "@{game.check ? paint.STRIKE_THRU_TEXT_FLAG : 0}"
+                                        android:textAlignment="textStart"
+                                        android:textColor="#757575"
+                                        android:textSize="18sp"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/gameName" />
+
+                                <TextView
+                                        android:id="@+id/gamePublisher"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/gameLaunchYear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                        android:id="@+id/editButton"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="8dp"
+                                        android:text="Editar"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
+
+                                <TextView
+                                        android:id="@+id/actionDetails"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="8dp"
+                                        android:visibility="@{game.check ? view.GONE : view.VISIBLE}"
+                                        android:text="Visualizar"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/actionDelete"
+                                        app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
+
+
+                                <TextView
+                                        android:id="@+id/actionDelete"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="#3EA63E"
+                                        android:padding="8dp"
+                                        android:visibility="@{game.check ? view.GONE : view.VISIBLE}"
+                                        android:text="Zerar"
+                                        android:textAlignment="textStart"
+                                        android:textColor="@color/white"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/barrierDescription" />
+
+                                <androidx.constraintlayout.widget.Barrier
+                                        android:id="@+id/barrierDescription"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        app:barrierDirection="bottom"
+                                        app:constraint_referenced_ids="gameDescription" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</layout>
