@@ -16,7 +16,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class GameListFragment : Fragment() {
-    private lateinit var binding = FragmentGameListBinding
+    private var _binding: FragmentGameListBinding? = null
+    private val binding get() = _binding!!
     private lateinit var adapter: GameAdapter
     private val gameViewModel: GameViewModel by viewModels()
 
@@ -28,7 +29,7 @@ class GameListFragment : Fragment() {
             adapter.submitList(games)
         }
 
-        binding = FragmentGameListBinding.inflate(inflater, container, false)
+        _binding = FragmentGameListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

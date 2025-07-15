@@ -17,7 +17,7 @@ class GameViewHolder(
     fun bind(game: Game) {
         binding.game = game
 
-        binding.actionEdit.setOnClickListener {
+        binding.editButton.setOnClickListener {
             onEdit(game)
         }
 
@@ -29,8 +29,8 @@ class GameViewHolder(
             onDetails(game)
         }
 
-        binding.gameCheck.addOnCheckedStateChangedListener {_, _ ->
-            binding.game = game
-        }
+//        binding.gameCheck.addOnCheckedStateChangedListener {_, _ ->
+//            binding.game = game
+//        }
     }
 }
