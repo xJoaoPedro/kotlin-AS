@@ -11,12 +11,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import br.com.ulbra.ap2quinta.R
 import br.com.ulbra.ap2quinta.data.model.Game
+import br.com.ulbra.ap2quinta.databinding.FragmentFormGameBinding
 import br.com.ulbra.ap2quinta.ui.viewmodel.GameViewModel
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.text.toIntOrNull
 
 
 class FormGameFragment : Fragment() {
+    private lateinit var binding: FragmentFormGameBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     private val gameViewModel: GameViewModel by viewModels()
 
@@ -24,7 +29,8 @@ class FormGameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_form_game, container, false)
+        return FormGameFragment.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,4 +59,13 @@ class FormGameFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
+
+    companion object
+}
+
+private fun FormGameFragment.Companion.inflate(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    bool: Boolean
+): View? {
 }

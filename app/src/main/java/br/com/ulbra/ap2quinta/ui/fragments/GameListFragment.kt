@@ -9,12 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.ulbra.ap2quinta.R
+import br.com.ulbra.ap2quinta.databinding.FragmentGameListBinding
 import br.com.ulbra.ap2quinta.ui.adapter.GameAdapter
 import br.com.ulbra.ap2quinta.ui.viewmodel.GameViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class GameListFragment : Fragment() {
+    private lateinit var binding = FragmentGameListBinding
     private lateinit var adapter: GameAdapter
     private val gameViewModel: GameViewModel by viewModels()
 
@@ -26,7 +28,8 @@ class GameListFragment : Fragment() {
             adapter.submitList(games)
         }
 
-        return inflater.inflate(R.layout.fragment_game_list, container, false)
+        binding = FragmentGameListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
